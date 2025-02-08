@@ -74,6 +74,12 @@ cc_wrapper=\"$cc_wrapper\"
 target_cpu=\"$target_cpu\"
 v8_target_cpu=\"$target_cpu\""
 
+# Disable clang for arm64 and arm
+if [ "$target_cpu" = "arm64" ] || [ "$target_cpu" = "arm" ] ; then
+  gn_args="$gn_args
+is_clang=false"
+fi
+
 cd "${dir}/v8"
 
 gn gen "./out/release" --args="$gn_args"
