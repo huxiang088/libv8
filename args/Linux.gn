@@ -1,5 +1,5 @@
 clang_use_chrome_plugins=false
-is_component_build=false
+is_component_build=true
 is_debug=false
 strip_debug_info=true
 symbol_level=0
