@@ -72,7 +72,8 @@ jobs:
           path: artifact
 
       - name: Display Downloads
-        run: ls -lhR artifact
+        run: ls ./
+        #run: ls -lhR artifact
 
       - name: Upload Archive
         uses: softprops/action-gh-release@v2
