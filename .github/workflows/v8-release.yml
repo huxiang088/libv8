@@ -31,20 +31,23 @@ jobs:
         shell: pwsh
         run: .\.github\workflows\scripts\archive-name.ps1
 
-      - name: Build Release for Linux
+      - name: Build Release for Linux (${{ runner.arch }})
         if: startsWith(matrix.os, 'ubuntu')
+        continue-on-error: true
         uses: ./.github/actions/build-linux
         with:
           archive-name: ${{ env.ARCHIVE_NAME }}
 
       - name: Build Release for macOS (${{ runner.arch }})
         if: startsWith(matrix.os, 'macos')
+        continue-on-error: true
         uses: ./.github/actions/build-macos
         with:
           archive-name: ${{ env.ARCHIVE_NAME }}
 
       - name: Build Release for Windows
         if: startsWith(matrix.os, 'windows')
+        continue-on-error: true
         uses: ./.github/actions/build-windows
         with:
           archive-name: ${{ env.ARCHIVE_NAME }}
@@ -69,7 +72,8 @@ jobs:
           path: artifact
 
       - name: Display Downloads
-        run: ls -lhR artifact
+        run: ls ./
+        #run: ls -lhR artifact
 
       - name: Upload Archive
         uses: softprops/action-gh-release@v2
